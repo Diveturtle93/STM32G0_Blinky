@@ -7,4 +7,4 @@ is tested on a nucleo board.
 The bootloader address is set in the linker script to address 0x08008000
 and use the total flash space.
 
-The software use GPIO A5 and UART2.
+The software use GPIO A5 for LED, GPIO A2 and A3 for UART2.
