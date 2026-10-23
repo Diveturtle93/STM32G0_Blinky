@@ -23,6 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "version.h"
 
 /* USER CODE END Includes */
 
@@ -89,22 +90,31 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Transmit(&huart2, (uint8_t *)"Test App\n", 9, 1000);
 
+	uartTransmitString("\vHello Diveturtle93\n");
+	uartTransmitString("Revision:\t");
+	uartTransmitNumber(VERSION_MAJOR, 10);
+	uartTransmit(".", 1);
+	uartTransmitNumber(VERSION_MINOR, 10);
+	uartTransmit(".", 1);
+	uartTransmitNumber(VERSION_PATCH, 10);
+	uartTransmit(".", 1);
+	uartTransmitNumber(VERSION_DEV, 10);
+	uartTransmit("\n", 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	while (1)
+	{
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
-	  HAL_Delay(1000);
-	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
-	  HAL_Delay(1000);
-  }
+		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
   /* USER CODE END 3 */
 }
 
@@ -159,11 +169,11 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+	// User can add his own implementation to report the HAL error return state
+	__disable_irq();
+	while (1)
+	{
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 #ifdef USE_FULL_ASSERT
@@ -177,8 +187,8 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+	// User can add his own implementation to report the file name and line number,
+	// ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
